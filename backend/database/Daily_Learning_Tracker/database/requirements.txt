@@ -1,5 +1,0 @@
-# Core Supabase Python client
-supabase==2.9.1
-
-# Load environment variables from a .env file
-python-dotenv==1.0.1
