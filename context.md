@@ -1,208 +1,185 @@
-# InvestorShield — AI Context
+# 🛡️ FroudFuse AI
 
-## 1. PROJECT
+### **AI-Based Investor Fraud & Impersonation Detection**
 
-AI-Based Investor Fraud & Impersonation Detection
-Domain: FinTech / Investor Protection
+> **Detect suspicious signals. Explain the risk. Protect the investor.**
 
-Goal: Detect suspicious investor-facing video, audio, messages and trading-platform indicators and produce an explainable fraud-risk score.
+InvestorShield is an AI-powered **FinTech and cybersecurity platform** that analyzes suspicious investment **videos, audio, messages, and trading-platform URLs** to identify potential fraud and impersonation.
 
-Core flow: `INPUT → DETECTION → SIGNAL FUSION → RISK ENGINE → EXPLANATION → REPORT`
+It combines multimodal AI, rule-based detection, platform intelligence, and explainable risk scoring to help investors make safer decisions.
 
-This is a screening/decision-support system, not a legal fraud determination.
+> ⚠️ **InvestorShield is a screening and decision-support system, not a legal fraud determination.**
 
-## 2. FIXED STACK
+---
 
-| Layer | Technology |
-|---|---|
-| Frontend | React + TypeScript + Vite + Tailwind |
-| Backend | Python + FastAPI |
-| Database/Auth/Storage | Supabase |
-| ML | Python + OpenCV + pretrained deepfake model |
-| Audio | FFmpeg + Speech-to-Text |
-| Text | Regex + NLP |
-| Platform | TRIP/API adapter + local URL checks |
-| AI layer | MCP |
-| Version control | Git/GitHub |
+## 🚨 Problem
 
-**DO NOT change the stack.**
+Investors are increasingly targeted through:
 
-## 3. FINAL ARCHITECTURE
+* 🎭 Fake financial advisors and celebrity impersonation
+* 🎥 Deepfake investment videos
+* 💬 Fraudulent WhatsApp/Telegram messages
+* 💰 Guaranteed-return and urgency-based scams
+* 🌐 Fake trading platforms and suspicious URLs
+* 💳 Requests for direct payments or transfers
 
-```
-React Frontend
-↓
-FastAPI API
-↓
-┌─────────────────────────────────────┐
-│ Detection Engines                   │
-│                                     │
-│ Media  → OpenCV → Deepfake Model    │
-│ Audio  → FFmpeg → STT → Analysis   │
-│ Text   → Regex + NLP               │
-│ Identity → Impersonation Analysis  │
-│ URL    → TRIP/API + Local Checks   │
-└─────────────────────────────────────┘
-↓
-Signal Engine → Risk Engine → Explanation Engine
-↓
-Supabase
-↓
-Dashboard / Evidence / Report
+Traditional tools often analyze only one type of signal. InvestorShield combines **multiple signals into one explainable risk assessment**.
+
+---
+
+## 💡 Our Solution
+
+InvestorShield follows a multimodal detection pipeline:
+
+```mermaid
+flowchart LR
+    A[Video / Audio / Message / URL] --> B[Detection Engines]
+    B --> C[Signal Fusion]
+    C --> D[Risk Engine]
+    D --> E[Explanation]
+    E --> F[Investigation Report]
 ```
 
-MCP sits above existing backend services and calls them. MCP must **NOT** duplicate detection logic.
+### 🔍 Detection Capabilities
 
-## 4. DETECTION ENGINES
+| Module      | Detection                              |
+| ----------- | -------------------------------------- |
+| 🎥 Media    | Deepfake and suspicious-frame analysis |
+| 🎙️ Audio   | Audio extraction + Speech-to-Text      |
+| 💬 Text     | Regex + NLP fraud-language detection   |
+| 🎭 Identity | Potential impersonation detection      |
+| 🔗 Platform | URL and trading-platform risk analysis |
 
-### Media
-Video → OpenCV → frame sampling → face processing → pretrained deepfake model.
-Return: `deepfake_score`, `confidence`, `frames_analyzed`, `suspicious_frames`, `evidence`.
-Do NOT train a model from scratch.
+---
 
-### Audio
-Video → FFmpeg → audio → speech-to-text → Regex/NLP.
-Audio manipulation detection is optional if unstable.
+## ⚖️ Explainable Risk Engine
 
-### Regex
-Detect: guaranteed/fixed returns, urgency, payment requests, SEBI/registered-advisor claims, VIP/Telegram/WhatsApp patterns, investment solicitation.
-Regex must return evidence.
+All signals are normalized and combined into a **0–100 risk score**.
 
-### NLP
-Detect context: scam intent, investment solicitation, guaranteed-return claims, urgency, payment request, impersonation, suspicious financial advice.
+| Signal            | Weight |
+| ----------------- | -----: |
+| 🎥 Deepfake       |    25% |
+| 🎙️ Audio         |    10% |
+| 🚨 Fraud Language |    25% |
+| 🎭 Impersonation  |    20% |
+| 🌐 Platform       |    20% |
 
-### Impersonation
-Analyze: name + claimed role + organization + message + available identity signals.
+### Risk Levels
 
-### Platform
-URL → TRIP/API adapter + local checks.
-Signals: domain, reputation, HTTPS, redirects, suspicious keywords, financial claims, payment instructions, brand impersonation.
-External API failure must fall back to local checks.
+* 🟢 **0–30:** LOW
+* 🟡 **31–60:** MEDIUM
+* 🟠 **61–80:** HIGH
+* 🔴 **81–100:** CRITICAL
 
-## 5. SIGNAL ENGINE
+The system preserves **component scores, evidence, and reasons** so users can understand *why* a case was flagged.
 
-Normalize all detectors into:
-```json
-{
-  "score": 0.0,
-  "confidence": 0.0,
-  "signals": [],
-  "evidence": []
-}
-```
-Combined signals: `deepfake`, `audio`, `fraud_language`, `impersonation`, `platform`
+---
 
-## 6. RISK ENGINE
+## 🏗️ System Architecture
 
-**Weights:**
-| Signal | Weight |
-|---|---|
-| Deepfake | 25% |
-| Audio | 10% |
-| Fraud language | 25% |
-| Impersonation | 20% |
-| Platform | 20% |
-
-**Risk Levels:**
-| Score | Level |
-|---|---|
-| 0–30 | LOW |
-| 31–60 | MEDIUM |
-| 61–80 | HIGH |
-| 81–100 | CRITICAL |
-
-Always preserve component scores and reasons.
-
-## 7. API CONTRACT
+<img width="713" height="1600" alt="WhatsApp Image 2026-08-21 at 1 20 55 PM" src="https://github.com/user-attachments/assets/3768aa4a-a233-4829-8531-fb3dff7e44d3" />
 
 ```
-GET  /health
-POST /cases
-POST /analyze/text
-POST /analyze/video
-POST /analyze/url
-POST /risk
-GET  /cases/{id}
-GET  /cases/{id}/report
+
+
+
+
+## 🛠️ Technology Stack
+
+| Layer                     | Technology                                  |
+| ------------------------- | ------------------------------------------- |
+| 🎨 Frontend               | React + TypeScript + Vite + Tailwind        |
+| ⚡ Backend                 | Python + FastAPI                            |
+| 🤖 ML                     | Python + OpenCV + Pretrained Deepfake Model |
+| 🎙️ Audio                 | FFmpeg + Speech-to-Text                     |
+| 📝 Text                   | Regex + NLP                                 |
+| 🌐 Platform               | TRIP/API Adapter + Local URL Checks         |
+| 🗄️ Database/Auth/Storage | Supabase                                    |
+| 🧠 AI Orchestration       | MCP                                         |
+| 🔧 Version Control        | Git + GitHub                                |
+
+---
+
+## 🖥️ Key Features
+
+* 📤 Multimodal investigation input
+* 🎥 Deepfake detection
+* 💬 Fraud-language detection
+* 🎭 Impersonation analysis
+* 🔗 Suspicious platform/URL detection
+* 📊 Explainable risk scoring
+* 🔎 Evidence and detection breakdown
+* 📈 Investigation dashboard
+* 📄 Automated investigation report
+* 🛟 Fallback mechanisms for API/ML failures
+
+---
+
+## 🔄 Demo Workflow
+
+```text
+Suspicious Investment Video / Message
+                ↓
+       Multimodal Detection
+                ↓
+          Signal Fusion
+                ↓
+          Risk Calculation
+                ↓
+       🔴 91/100 — CRITICAL
+                ↓
+      Evidence + Explanation
+                ↓
+       Investigation Report
 ```
 
-Do not change API response structures without team agreement.
+---
 
-## 8. SUPABASE
+## 🛡️ Reliability & Fallbacks
 
-Use Supabase for: PostgreSQL database, Authentication if required, Storage for uploaded media.
-Core tables: `cases`, `evidence`, `detections`, `risk_scores`, `reports`.
-Do not introduce another database.
+InvestorShield is designed to keep the demo functional even when individual components fail.
 
-## 9. MCP TOOLS
+| Failure            | Fallback                |
+| ------------------ | ----------------------- |
+| 🤖 ML failure      | Precomputed/demo result |
+| 🌐 API failure     | Local URL analysis      |
+| 🧠 MCP failure     | Normal REST API flow    |
+| 📡 Network failure | Local demo case         |
 
-`analyze_video()` · `analyze_message()` · `analyze_platform()` · `check_impersonation()` · `calculate_risk()` · `explain_case()` · `generate_report()`
+> **Golden Rule: The main end-to-end demo must remain functional.**
 
-MCP calls existing FastAPI/services.
+---
 
-## 10. FRONTEND SCREENS
+## 🎯 Success Criteria
 
-1. Command Center
-2. Investigation / Upload
-3. Analysis Result
-4. Evidence Timeline
-5. Report
+InvestorShield is demo-ready when:
 
-Main result must show: Risk score, Risk level, Detection breakdown, Evidence, Reasons, Recommended action.
+* ✅ End-to-end analysis works
+* ✅ Video/text analysis produces results
+* ✅ Risk score is calculated correctly
+* ✅ Evidence is displayed
+* ✅ Explanation is generated
+* ✅ Data is stored in Supabase
+* ✅ Dashboard displays the investigation
+* ✅ Report can be generated
+* ✅ At least one fallback works
 
-## 11. 24-HOUR PRIORITY
+---
 
-| Priority | Scope |
-|---|---|
-| **P0** | End-to-end flow, FastAPI, Supabase, Risk engine, Frontend, Text detection, Video/deepfake pipeline |
-| **P1** | Audio, Platform/API, MCP, Report |
-| **P2** | UI polish / extras |
-
-If behind schedule, cut P2 first.
-
-## 12. FALLBACK
-
-| Failure | Fallback |
-|---|---|
-| ML failure | Demo/precomputed result |
-| API failure | Local URL checks |
-| MCP failure | Normal REST flow |
-| Network failure | Local demo case |
-
-The demo must remain functional.
-
-## 13. AI AGENT RULES
-
-Before coding: (1) Read this file. (2) Inspect existing code. (3) Modify only the requested module.
-
-**Never:**
-- Change architecture or stack
-- Add unnecessary dependencies
-- Rewrite unrelated code
-- Duplicate services
-- Modify another member's module
-- Train a model from scratch
-- Introduce MongoDB/Firebase/Appwrite
-- Introduce microservices/Kubernetes
-
-Keep changes minimal and compatible with existing APIs.
-
-## 14. TEAM
-
-| Role | Responsibilities |
-|---|---|
-| Tech Lead | FastAPI + Supabase + Risk Engine + Integration + MCP + Deployment |
-| ML | OpenCV + Deepfake + Audio + Regex + NLP |
-| Frontend | React UI + Dashboard + Investigation + Results + Report |
-| Product/QA | Demo cases + Testing + Documentation + Pitch + MCP support |
-
-## 15. DEMO
-
-```
-Fake advisor video/message
-→ OpenCV/deepfake → Audio/STT → Regex + NLP → Impersonation → Platform checks
-→ Signal Fusion → 91/100 CRITICAL
-→ Evidence + Explanation → AI Investigation → Report
-```
+## 🚀 Development Principle
 
 > **BUILD LESS. INTEGRATE EARLY. KEEP THE MAIN DEMO WORKING.**
+
+The system prioritizes a functional end-to-end investigation pipeline over unnecessary features or complexity.
+
+---
+
+## 🏆 Vision
+
+InvestorShield aims to give investors a **single intelligent layer of protection** against modern investment scams by combining:
+
+**Multimodal AI + Fraud Detection + Impersonation Analysis + Platform Intelligence + Explainable Risk Scoring**
+
+### 🛡️ InvestorShield
+
+**Detect suspicious signals. Explain the risk. Protect the investor.**
