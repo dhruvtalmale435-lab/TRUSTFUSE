@@ -452,16 +452,5 @@ Municipal authorities can:
 ---
 
 # 12. System Architecture
+<img width="713" height="1600" alt="WhatsApp Image 2026-08-21 at 1 20 55 PM" src="https://github.com/user-attachments/assets/5ab597bb-d535-46e1-b45a-4dda7c551cad" />
 
-```text
-Citizen / Authority / Worker
-            ↓
-        Frontend
-            ↓
-        Backend API
-            ↓
-    ┌───────┼────────┐
-    ↓       ↓        ↓
- Database  Storage  AI Service
-                    ↓
-              ML / CV Models
