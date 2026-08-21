@@ -1,0 +1,22 @@
+# ============================================================
+# TRUSTFUSE — Backend Integration Layer
+# requirements.txt
+# ============================================================
+# Install with:  pip install -r requirements.txt
+# Do NOT add TensorFlow / PyTorch — ML inference is out of scope.
+
+# ── Web framework ─────────────────────────────────────────────
+fastapi>=0.111.0
+uvicorn>=0.30.0
+
+# ── Database ──────────────────────────────────────────────────
+supabase>=2.4.0
+
+# ── Data validation ───────────────────────────────────────────
+pydantic>=2.7.0
+
+# ── Environment configuration ─────────────────────────────────
+python-dotenv>=1.0.0
+
+# ── Dataset module dependency (already in c:\dataset) ─────────
+# python-dotenv is shared — already listed above.
