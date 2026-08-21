@@ -1,0 +1,10 @@
+{
+  "description": "This platform empowers retail investors in India to assess investment offers for potential scams, providing risk scores and actionable insights to enhance decision-making.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
