@@ -265,32 +265,8 @@ AI Question
 
 🏗️ System Architecture
 
-flowchart TD
-    A[USER INPUT]
+<img width="713" height="1600" alt="WhatsApp Image 2026-08-21 at 1 20 55 PM" src="https://github.com/user-attachments/assets/a3dc4dfd-d74e-4e29-b6a2-4f0e03d318e5" />
 
-    A --> B[Text Detector]
-    A --> C[Voice Detector]
-    A --> D[Video Detector]
-    A --> E[URL / Platform Detector]
-    A --> F[Identity Verification]
-
-    B --> B1[Text Risk]
-    C --> C1[Voice Risk]
-    D --> D1[Video Risk]
-    E --> E1[Platform Risk]
-    F --> F1[Identity Signals]
-
-    B1 --> G[Evidence Fusion]
-    C1 --> G
-    D1 --> G
-    E1 --> G
-    F1 --> G
-
-    G --> H[Overall Risk]
-    H --> I[Explanation Engine]
-    I --> J[Recommended Verification / Action]
-
----
 
 ⚙️ AI/ML Modules
 
