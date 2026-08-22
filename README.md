@@ -265,7 +265,9 @@ AI Question
 
 🏗️ System Architecture
 
-<img width="713" height="1600" alt="WhatsApp Image 2026-08-21 at 1 20 55 PM" src="https://github.com/user-attachments/assets/a3dc4dfd-d74e-4e29-b6a2-4f0e03d318e5" />
+<img width="1980" height="2276" alt="image" src="https://github.com/user-attachments/assets/d9d71019-97f0-4ba3-b54e-0054236a9642" />
+
+
 
 
 ⚙️ AI/ML Modules
