@@ -1,4 +1,4 @@
-🛡️ TrustFusion AI
+🛡️SafeInvest AI
 
 Detect. Fuse. Explain. Protect.
 
